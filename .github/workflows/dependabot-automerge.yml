@@ -1,0 +1,17 @@
+name: Automerge Dependabot PRs
+
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Automerge Dependabot PRs
+        uses: navikt/automerge-dependabot@vmain
+        with:
+          token: ${{ github.token }}
+          minimum-age-of-pr: '3'
+          blackout-periods: 'Jul 1-Jul 31','Dec 15-Jan 2'

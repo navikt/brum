@@ -1,0 +1,21 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: backend-golden-path
+  namespace: appsec
+spec:
+  ingresses:
+    - https://backend-golden-path.intern.dev.nav.no
+  image: {{image}}
+  port: 8080
+  replicas:
+    max: 1
+    min: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 32Mi
+  observability:
+    logging:
+      destinations:
+        - id: loki

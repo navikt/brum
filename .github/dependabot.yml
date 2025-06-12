@@ -1,0 +1,28 @@
+version: 2
+# Use registries if you need to authenticate to a package registry.
+# For example when using private GitHub packages, change & uncomment lines below.
+#
+#registries:
+#  mvn-repo:
+#    type: maven-repository
+#    url: https://maven.pkg.github.com/navikt/backend-golden-path
+#    username: username
+#    password: ${{secrets.READER_TOKEN}}
+
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+
+  - package-ecosystem: gradle
+    directory: "/"
+    schedule:
+      interval: daily
+#    registries:
+#      - mvn-repo
+
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: daily
