@@ -56,5 +56,5 @@ jobs:
       - uses: nais/deploy/actions/deploy@7c152a10f4da3ca352d57a25eba0b3a8e04882f9
         env:
           RESOURCE: .nais/nais.yaml
-          CLUSTER: prod-gcp
+          CLUSTER: dev-gcp
           IMAGE: ${{ needs.test-build-deploy.outputs.image }}
