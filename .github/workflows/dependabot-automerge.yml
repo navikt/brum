@@ -14,4 +14,4 @@ jobs:
         with:
           token: ${{ github.token }}
           minimum-age-of-pr: '3'
-          blackout-periods: 'Jul 1-Jul 31','Dec 15-Jan 2'
+          blackout-periods: 'Jul 1-Jul 31'
