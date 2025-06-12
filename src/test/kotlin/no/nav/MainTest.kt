@@ -15,6 +15,6 @@ class MainTest {
         }
         val response = client.get("/")
         assertEquals(HttpStatusCode.OK, response.status)
-        assertEquals("Hello, World!", response.bodyAsText())
+        assertEquals("brrrrrrrrrrrum!", response.bodyAsText())
     }
 }
