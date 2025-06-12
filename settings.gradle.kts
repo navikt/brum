@@ -1,1 +1,1 @@
-rootProject.name = "backend-golden-path"
+rootProject.name = "brum"
