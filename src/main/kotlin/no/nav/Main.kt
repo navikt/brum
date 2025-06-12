@@ -16,7 +16,7 @@ fun Application.module() {
     routing {
         get("/") {
             logger.info("Request received")
-            call.respond(HttpStatusCode.OK, "Hello, World!")
+            call.respond(HttpStatusCode.OK, "brrrrrrrrrrrum!")
         }
     }
 }
