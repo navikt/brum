@@ -7,10 +7,12 @@ on:
 
 jobs:
   automerge:
+    permissions:
+      contents: write # for dependency graph & sarif    
     runs-on: ubuntu-latest
     steps:
       - name: Automerge Dependabot PRs
-        uses: navikt/automerge-dependabot@vmain
+        uses: navikt/automerge-dependabot@715236f66bfe1d9a316fd67921161647f4361500
         with:
           token: ${{ github.token }}
           minimum-age-of-pr: '3'
