@@ -51,6 +51,7 @@ fun Application.module() {
         bearer("auth-bearer") {
             authenticate { credentials ->
                 // send request to texas
+                logger.info("Sending off ${credentials.token}")
                 val response = client.post(env.texasEndpoint) {
                     contentType(ContentType.Application.Json)
                     setBody(mapOf(
