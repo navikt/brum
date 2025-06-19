@@ -37,6 +37,12 @@ data class TexasResponse(
     val error: String?
 )
 
+@Serializable
+data class TexasRequest(
+    val identity_provider: String,
+    val token: String
+)
+
 val logger: Logger = LoggerFactory.getLogger("Main")
 
 fun Application.module() {
@@ -51,12 +57,12 @@ fun Application.module() {
         bearer("auth-bearer") {
             authenticate { credentials ->
                 // send request to texas
-                logger.info("Sending off ${credentials.token}")
+                logger.info("Sending off ${credentials.token}") // TODO: remove this lol
                 val response = client.post(env.texasEndpoint) {
                     contentType(ContentType.Application.Json)
-                    setBody(mapOf(
-                        "identity_provider" to "azuread",
-                        "token" to credentials.token
+                    setBody(TexasRequest(
+                        "azuread",
+                        credentials.token
                     ))
                 }.body<TexasResponse>()
                 if (response.error != null) {
