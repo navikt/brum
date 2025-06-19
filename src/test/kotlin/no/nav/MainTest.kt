@@ -14,7 +14,6 @@ class MainTest {
             module()
         }
         val response = client.get("/")
-        assertEquals(HttpStatusCode.OK, response.status)
-        assertEquals("brrrrrrrrrrrum!", response.bodyAsText())
+        assertEquals(HttpStatusCode.Unauthorized, response.status)
     }
 }
