@@ -37,7 +37,11 @@ data class TexasResponse(
 val logger: Logger = LoggerFactory.getLogger("Main")
 
 fun Application.module() {
-    val client = HttpClient(CIO)
+    val client = HttpClient(CIO) {
+        install(io.ktor.client.plugins.contentnegotiation.ContentNegotiation) {
+            jackson()
+        }
+    }
     val env = Environment()
 
     install(Authentication){

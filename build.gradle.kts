@@ -27,6 +27,7 @@ dependencies {
 
     implementation("io.ktor:ktor-client-core:${ktorVersion}")
     implementation("io.ktor:ktor-client-cio:${ktorVersion}")
+    implementation("io.ktor:ktor-client-content-negotiation:${ktorVersion}")
 
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashEncoderVersion")
