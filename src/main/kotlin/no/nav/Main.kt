@@ -58,6 +58,9 @@ fun Application.module() {
                         "token" to credentials.token
                     ))
                 }.body<TexasResponse>()
+                if (response.error != null) {
+                    logger.error("Token error from Texas: ${response.error}")
+                }
                 if (response.active) {
                     UserIdPrincipal("jetbrains")
                 } else {
