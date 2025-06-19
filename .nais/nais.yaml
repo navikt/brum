@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: brum
   namespace: brum
+  annotations:
+    texas.nais.io/enabled: "true"
 spec:
   ingresses:
     - https://brum.intern.dev.nav.no
