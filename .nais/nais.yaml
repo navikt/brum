@@ -9,9 +9,9 @@ spec:
   azure:
     application:
       enabled: true
+      allowAllUsers: true
     sidecar:
       enabled: true
-      allowAllUsers: true
   image: {{image}}
   port: 8080
   replicas:
