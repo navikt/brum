@@ -1,5 +1,6 @@
 package no.nav
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
@@ -30,8 +31,10 @@ data class Tiltaksdata(
 )
 
 @Serializable
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class TexasResponse(
     val active: Boolean,
+    val error: String?
 )
 
 val logger: Logger = LoggerFactory.getLogger("Main")
