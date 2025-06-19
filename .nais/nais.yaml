@@ -6,6 +6,12 @@ metadata:
 spec:
   ingresses:
     - https://brum.intern.dev.nav.no
+  azure:
+    application:
+      enabled: true
+    sidecar:
+      enabled: true
+      allowAllUsers: true
   image: {{image}}
   port: 8080
   replicas:
