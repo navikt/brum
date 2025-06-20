@@ -7,13 +7,11 @@ metadata:
     texas.nais.io/enabled: "true"
 spec:
   ingresses:
-    - https://brum.intern.dev.nav.no
+    - https://brum-api.intern.dev.nav.no
   azure:
     application:
       enabled: true
       allowAllUsers: true
-    sidecar:
-      enabled: true
   image: {{image}}
   port: 8080
   replicas:
