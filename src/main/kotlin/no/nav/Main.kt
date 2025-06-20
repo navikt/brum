@@ -56,8 +56,6 @@ fun Application.module() {
     install(Authentication){
         bearer("auth-bearer") {
             authenticate { credentials ->
-                // send request to texas
-                logger.info("Sending off ${credentials.token}") // TODO: remove this lol
                 val response = client.post(env.texasEndpoint) {
                     contentType(ContentType.Application.Json)
                     setBody(TexasRequest(
