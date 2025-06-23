@@ -58,6 +58,7 @@ fun Application.module() {
         allowHost(env.brumFrontEndUrl, schemes = listOf("http", "https"))
         allowHeader(HttpHeaders.ContentType)
         allowHeader(HttpHeaders.Authorization)
+        exposeHeader("X-Another-Custom-Header")
         allowCredentials = true
     }
     install(Authentication){
@@ -84,16 +85,20 @@ fun Application.module() {
     install(ContentNegotiation) {
         jackson()
     }
+
     routing {
-        authenticate("auth-bearer") {
             get("/") {
                 logger.info("Request received")
                 call.respond(
                     HttpStatusCode.OK,
-                    "brrrrrrrrrrrrrrum!!"
-                )
+                        listOf(
+                            "grot" to Tiltaksdata(arrayOf(0, 3, 2), arrayOf(1, 6, 5), arrayOf(0, 5, 4)),
+                            "suppe" to Tiltaksdata(arrayOf(3, 1, 1), arrayOf(2, 2, 2), arrayOf(2, 0, 1)),
+                            "spag" to Tiltaksdata(arrayOf(6, 6, 4), arrayOf(4, 5, 4), arrayOf(2, 1, 4)),
+                            "active" to true
+                        )
+                    )
             }
-        }
         get("/auth") {
             logger.info("Request received")
             call.respond(
