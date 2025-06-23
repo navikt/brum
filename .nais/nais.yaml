@@ -12,6 +12,9 @@ spec:
     application:
       enabled: true
       allowAllUsers: true
+  env:
+  - name: BRUM_FRONTEND_URL
+    value: "brum.intern.dev.nav.no"
   image: {{image}}
   port: 8080
   replicas:

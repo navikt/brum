@@ -15,6 +15,7 @@ import io.ktor.server.auth.authenticate
 import io.ktor.server.auth.bearer
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
@@ -51,8 +52,14 @@ fun Application.module() {
             jackson()
         }
     }
-    val env = Environment()
 
+    val env = Environment()
+    install(CORS) {
+        allowHost(env.brumFrontEndUrl, schemes = listOf("http", "https"))
+        allowHeader(HttpHeaders.ContentType)
+        allowHeader(HttpHeaders.Authorization)
+        allowCredentials = true
+    }
     install(Authentication){
         bearer("auth-bearer") {
             authenticate { credentials ->
