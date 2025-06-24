@@ -82,7 +82,7 @@ fun Application.module() {
     }
 
     routing {
-        staticFiles("/resources", File("files"))
+        staticFiles("/src/main/", File("resources"))
 
         authenticate("auth-bearer") {
             get("/testAuth") {
