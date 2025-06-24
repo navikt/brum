@@ -21,6 +21,7 @@ import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.io.File
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
@@ -89,15 +90,8 @@ fun Application.module() {
     routing {
             get("/getTestData") {
                 logger.info("Request received")
-                call.respond(
-                    HttpStatusCode.OK,
-                        mapOf(
-                            "grot" to Tiltaksdata(arrayOf(0, 3, 2), arrayOf(1, 6, 5), arrayOf(0, 5, 4)),
-                            "suppe" to Tiltaksdata(arrayOf(3, 1, 1), arrayOf(2, 2, 2), arrayOf(2, 0, 1)),
-                            "spag" to Tiltaksdata(arrayOf(6, 6, 4), arrayOf(4, 5, 4), arrayOf(2, 1, 4)),
-                            "active" to true
-                        )
-                    )
+                val file = File("src/main/resources/test-data.csv")
+                call.respondFile(file)
             }
         get("/auth") {
             logger.info("Request received")
