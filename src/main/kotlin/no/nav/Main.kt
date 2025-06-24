@@ -13,6 +13,7 @@ import io.ktor.server.auth.Authentication
 import io.ktor.server.auth.UserIdPrincipal
 import io.ktor.server.auth.authenticate
 import io.ktor.server.auth.bearer
+import io.ktor.server.http.content.staticFiles
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
@@ -81,6 +82,8 @@ fun Application.module() {
     }
 
     routing {
+        staticFiles("/resources", File("files"))
+
         authenticate("auth-bearer") {
             get("/testAuth") {
                 logger.info("ok")
