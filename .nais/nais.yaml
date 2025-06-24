@@ -12,10 +12,10 @@ spec:
     application:
       enabled: true
       allowAllUsers: true
-accessPolicy:
-  inbound:
-    rules:
-      - application: "brum"
+  accessPolicy:
+    inbound:
+      rules:
+        - application: "brum"
   env:
   - name: BRUM_FRONTEND_URL
     value: "brum.intern.dev.nav.no"
