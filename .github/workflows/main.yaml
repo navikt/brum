@@ -53,7 +53,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - uses: nais/deploy/actions/deploy@7c152a10f4da3ca352d57a25eba0b3a8e04882f9
+      - uses: nais/deploy/actions/deploy@094c1d72a12b0314f34df671cc5d09c3838ab95d
         env:
           RESOURCE: .nais/nais.yaml
           CLUSTER: dev-gcp
