@@ -82,7 +82,7 @@ fun Application.module() {
     }
 
     routing {
-        staticFiles(remotePath = "/", dir= File("files"))
+        staticFiles(remotePath = "/files", dir= File("files"))
 
         authenticate("auth-bearer") {
             get("/testAuth") {
