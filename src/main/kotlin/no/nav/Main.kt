@@ -87,6 +87,20 @@ fun Application.module() {
     }
 
     routing {
+        authenticate("auth-bearer") {
+            get("/testAuth") {
+                logger.info("ok")
+                call.respond(
+                    HttpStatusCode.OK,
+                    mapOf(
+                        "grot" to Tiltaksdata(arrayOf(0, 3, 2), arrayOf(1, 6, 5), arrayOf(0, 5, 4)),
+                        "suppe" to Tiltaksdata(arrayOf(3, 1, 1), arrayOf(2, 2, 2), arrayOf(2, 0, 1)),
+                        "spag" to Tiltaksdata(arrayOf(6, 6, 4), arrayOf(4, 5, 4), arrayOf(2, 1, 4)),
+                        "active" to true
+                    )
+                )
+              }
+            }
             get("/getTestData") {
                 logger.info("Request received")
                 call.respond(
