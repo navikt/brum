@@ -13,7 +13,7 @@ class MainTest {
         application {
             module()
         }
-        val response = client.get("/")
-        assertEquals(HttpStatusCode.Unauthorized, response.status)
+        val response = client.get("/getTestData")
+        assertEquals(HttpStatusCode.OK, response.status)
     }
 }
