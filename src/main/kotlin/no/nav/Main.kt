@@ -26,13 +26,6 @@ import java.io.File
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 @Serializable
-data class Tiltaksdata(
-    val vedtak : Array<Int?>,
-    val opptak : Array<Int?>,
-    val skippertak: Array<Int>
-)
-
-@Serializable
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TexasResponse(
     val active: Boolean,
@@ -88,6 +81,13 @@ fun Application.module() {
     }
 
     routing {
+        authenticate("auth-bearer") {
+            get("/testAuth") {
+                logger.info("ok")
+                val file = File("src/main/resources/test-data.csv")
+                call.respondFile(file)
+              }
+            }
             get("/getTestData") {
                 logger.info("Request received")
                 val file = File("src/main/resources/test-data.csv")
