@@ -13,7 +13,7 @@ class MainTest {
         application {
             module()
         }
-        val response = client.get("/getTestData")
+        val response = client.get("/staticFiles/test-data.csv")
         assertEquals(HttpStatusCode.OK, response.status)
     }
 }
