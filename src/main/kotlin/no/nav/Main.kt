@@ -82,7 +82,7 @@ fun Application.module() {
     }
 
     routing {
-        staticFiles(remotePath = "", dir= File("/files"))
+        staticFiles(remotePath = "/staticFile", dir= File("files"))
 
         authenticate("auth-bearer") {
             get("/testAuth") {
@@ -90,12 +90,12 @@ fun Application.module() {
                 val file = File("files/test-data.csv")
                 call.respondFile(file)
               }
-            }
+            } /*
             get("/getTestData") {
                 logger.info("Request received")
                 val file = File("files/test-data.csv")
                 call.respondFile(file)
-            }
+            }*/
         get("/auth") {
             logger.info("Request received")
             call.respond(
