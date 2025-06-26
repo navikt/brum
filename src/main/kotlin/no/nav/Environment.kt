@@ -5,7 +5,6 @@ data class Environment (
     val brumFrontEndUrl: String = getEnvVar("BRUM_FRONTEND_URL", "localhost:3000")
 
 )
-
 fun getEnvVar(varName: String, defaultValue: String? = null) =
     System.getenv(varName)
         ?: defaultValue ?: throw RuntimeException("Missing required variable \"$varName\"")
