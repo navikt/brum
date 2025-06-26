@@ -14,7 +14,7 @@ class MainTest {
         application {
             module()
         }
-        val response = client.get("/staticFile/test-data.csv")
+        val response = client.get("/getTestData")
         assertEquals(File("files/test-data.csv").readText(), response.bodyAsText())
         assertEquals(HttpStatusCode.OK, response.status)
     }
