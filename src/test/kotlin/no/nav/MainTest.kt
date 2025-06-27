@@ -1,4 +1,5 @@
 package no.nav
+import io.ktor.client.call.body
 import java.io.File
 
 import io.ktor.client.request.*
@@ -14,8 +15,8 @@ class MainTest {
         application {
             module()
         }
-        val response = client.get("/getTestData")
-        assertEquals(File("files/test-data.csv").readText(), response.bodyAsText())
+        val response = client.get("/testData/test-data.json")
+        assertEquals(File("files/test-data.json").readText(), response.bodyAsText())
         assertEquals(HttpStatusCode.OK, response.status)
     }
 }
