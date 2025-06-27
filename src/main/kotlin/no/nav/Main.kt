@@ -13,14 +13,17 @@ import io.ktor.server.auth.Authentication
 import io.ktor.server.auth.UserIdPrincipal
 import io.ktor.server.auth.authenticate
 import io.ktor.server.auth.bearer
+import io.ktor.server.http.content.staticFiles
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.io.File
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
@@ -87,33 +90,12 @@ fun Application.module() {
         authenticate("auth-bearer") {
             get("/testAuth") {
                 logger.info("ok")
-                call.respondText("""gjennomforingsgruppe,Landegruppe3,S.Bestemt,S.Tilpasset,Testklasse
-0,0,2,3,1000
-1,373,363,390,1000
-2,358,370,397,1000
-3,346,417,372,2000
-4,386,373,351,3000
-5,391,348,355,3000
-6,354,368,389,0
-7,330,364,401,0
-8,347,388,341,0
-9,401,360,362,0""")
+                call.respond("ok")
               }
             }
-            get("/getTestData") {
-                logger.info("Request received")
-                call.respondText("""gjennomforingsgruppe,Landegruppe3,S.Bestemt,S.Tilpasset,Testklasse
-0,0,2,3,1000
-1,373,363,390,1000
-2,358,370,397,1000
-3,346,417,372,2000
-4,386,373,351,3000
-5,391,348,355,3000
-6,354,368,389,0
-7,330,364,401,0
-8,347,388,341,0
-9,401,360,362,0""")
-            }
+
+        staticFiles("/testData", File("files"))
+
         get("/auth") {
             logger.info("Request received")
             call.respond(

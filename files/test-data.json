@@ -1,0 +1,72 @@
+[
+  {
+    "gjennomforingsgruppe": 0,
+    "Landegruppe3": 0,
+    "S.Bestemt": 2,
+    "S.Tilpasset": 3,
+    "Testklasse": 1000
+  },
+  {
+    "gjennomforingsgruppe": 1,
+    "Landegruppe3": 373,
+    "S.Bestemt": 363,
+    "S.Tilpasset": 390,
+    "Testklasse": 1000
+  },
+  {
+    "gjennomforingsgruppe": 2,
+    "Landegruppe3": 358,
+    "S.Bestemt": 370,
+    "S.Tilpasset": 397,
+    "Testklasse": 1000
+  },
+  {
+    "gjennomforingsgruppe": 3,
+    "Landegruppe3": 346,
+    "S.Bestemt": 417,
+    "S.Tilpasset": 372,
+    "Testklasse": 2000
+  },
+  {
+    "gjennomforingsgruppe": 4,
+    "Landegruppe3": 386,
+    "S.Bestemt": 373,
+    "S.Tilpasset": 351,
+    "Testklasse": 3000
+  },
+  {
+    "gjennomforingsgruppe": 5,
+    "Landegruppe3": 391,
+    "S.Bestemt": 348,
+    "S.Tilpasset": 355,
+    "Testklasse": 3000
+  },
+  {
+    "gjennomforingsgruppe": 6,
+    "Landegruppe3": 354,
+    "S.Bestemt": 368,
+    "S.Tilpasset": 389,
+    "Testklasse": 0
+  },
+  {
+    "gjennomforingsgruppe": 7,
+    "Landegruppe3": 330,
+    "S.Bestemt": 364,
+    "S.Tilpasset": 401,
+    "Testklasse": 0
+  },
+  {
+    "gjennomforingsgruppe": 8,
+    "Landegruppe3": 347,
+    "S.Bestemt": 388,
+    "S.Tilpasset": 341,
+    "Testklasse": 0
+  },
+  {
+    "gjennomforingsgruppe": 9,
+    "Landegruppe3": 401,
+    "S.Bestemt": 360,
+    "S.Tilpasset": 362,
+    "Testklasse": 0
+  }
+]
