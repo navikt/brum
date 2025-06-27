@@ -98,8 +98,17 @@ fun Application.module() {
         authenticate("auth-bearer") {
             get("/testAuth") {
                 logger.info("ok")
-                val file = File("files/test-data.csv")
-                call.respondFile(file)
+                call.respondText("""gjennomforingsgruppe,Landegruppe3,S.Bestemt,S.Tilpasset,Testklasse
+0,0,2,3,1000
+1,373,363,390,1000
+2,358,370,397,1000
+3,346,417,372,2000
+4,386,373,351,3000
+5,391,348,355,3000
+6,354,368,389,0
+7,330,364,401,0
+8,347,388,341,0
+9,401,360,362,0""")
               }
             }
             get("/getTestData") {
