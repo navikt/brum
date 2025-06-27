@@ -15,7 +15,9 @@ spec:
   accessPolicy:
     inbound:
       rules:
-        - application: "brum"
+        - application: azure-token-generator
+          namespace: nais
+          cluster: dev-gcp
   env:
   - name: BRUM_FRONTEND_URL
     value: "brum.intern.dev.nav.no"
