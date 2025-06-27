@@ -10,22 +10,17 @@ import io.ktor.http.*
 import io.ktor.serialization.jackson.jackson
 import io.ktor.server.application.*
 import io.ktor.server.auth.Authentication
+import io.ktor.server.auth.UserIdPrincipal
 import io.ktor.server.auth.authenticate
 import io.ktor.server.auth.bearer
-import io.ktor.server.http.content.staticFiles
-import io.ktor.server.auth.principal
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonObject
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import java.io.File
-import java.security.Principal
-import kotlinx.serialization.json.jsonPrimitive
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
@@ -34,7 +29,7 @@ fun main(args: Array<String>): Unit = EngineMain.main(args)
 data class TexasResponse(
     val active: Boolean,
     val error: String?,
-    val claims: JsonObject? = null
+
 )
 
 @Serializable
@@ -43,11 +38,6 @@ data class TexasRequest(
     val token: String
 )
 
-data class UserClaimsPrincipal(val claims: JsonObject) : Principal {
-    override fun getName(): String? {
-        TODO("Not yet implemented")
-    }
-}
 
 val logger: Logger = LoggerFactory.getLogger("Main")
 
@@ -79,9 +69,8 @@ fun Application.module() {
                 if (response.error != null) {
                     logger.error("Token error from Texas: ${response.error}")
                 }
-                if (response.active && response.claims != null) {
-                     UserClaimsPrincipal(response.claims)
-
+                if (response.active) {
+                    UserIdPrincipal("jetbrains")
                 } else {
                     null
                 }
@@ -133,28 +122,5 @@ fun Application.module() {
                 )
             )
         }
-            get("/api/user-info") {
-                val principal = call.principal<UserClaimsPrincipal>()
-
-                if (principal == null) {
-                    call.respond(HttpStatusCode.Unauthorized, "No authenticated user claims found.")
-                    return@get
-                }
-
-                val displayName = principal.claims["name"]?.jsonPrimitive?.content
-                val preferredUsername = principal.claims["preferred_username"]?.jsonPrimitive?.content
-                val email = principal.claims["email"]?.jsonPrimitive?.content
-                val navIdent = principal.claims["NAVident"]?.jsonPrimitive?.content
-
-
-                val userInfo: Map<String, String?> = mapOf(
-                    "name" to displayName,
-                    "preferredUsername" to preferredUsername,
-                    "email" to email,
-                    "navIdent" to navIdent
-                )
-
-                call.respond(userInfo)
-            }
         }
     }
