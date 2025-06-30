@@ -1,11 +1,12 @@
 package no.nav
 
+import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.auth.*
 import io.ktor.server.http.content.staticFiles
-import java.io.File
+import no.nav.models.AuthenticatedUser
 
 fun Application.configureRouting() {
     routing {   authenticate("auth-bearer") {
@@ -33,6 +34,20 @@ fun Application.configureRouting() {
                     )
                 )
             }
+
+
+        authenticate("auth-bearer") {
+                get("/userInfo") {
+                    val user = call.principal<AuthenticatedUser>() ?: error("No authenticated user")
+                    call.respond(
+                        mapOf(
+                            "oid" to user.oid,
+                            "username" to user.username,
+                            "groups" to user.groups
+                        )
+                    )
+                }
         }
     }
+}
 

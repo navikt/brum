@@ -1,4 +1,4 @@
-package no.nav.model
+package no.nav.models
 
 import kotlinx.serialization.Serializable
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties

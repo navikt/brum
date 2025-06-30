@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class TexasRequest(
-    val identityProvider: String,
-    val token: String
+data class AuthenticatedUser(
+    val oid: String,
+    val username: String,
+    val groups: List<String>
 )
-
