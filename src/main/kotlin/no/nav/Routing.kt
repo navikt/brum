@@ -9,14 +9,20 @@ import io.ktor.server.http.content.staticFiles
 import no.nav.models.AuthenticatedUser
 
 fun Application.configureRouting() {
-    routing {   authenticate("auth-bearer") {
+    routing {
+        authenticate("auth-bearer") {
         get("/testAuth") {
             logger.info("ok")
             call.respond("ok")
         }
     }
 
-        staticFiles("/testData", File("files"))
+        get("/staus") {
+            logger.info("ok")
+            call.respond(HttpStatusCode.OK, "ok")
+        }
+
+//        staticFiles("/testData", File("files"))
 
         get("/auth") {
             logger.info("Request received")

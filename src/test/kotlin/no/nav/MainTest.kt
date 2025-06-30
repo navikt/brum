@@ -11,17 +11,17 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class MainTest {
-    // @Test    fun `server starts and responds with 200 OK`() = testApplication {
-//        application {
-//            module()
-//        }
-//        val response = client.get("/testData")
-//
-//        // test doesn't work for now
-//        /*assertEquals(
-//            getTestData().toString(), response.bodyAsText()
-//        )*/
-//        assertEquals(HttpStatusCode.OK, response.status)
-//    }
-//
+    @Test
+    fun `server starts and responds with 200 OK`() = testApplication {
+        application {
+            module()
+        }
+        val response = client.get("/staus")
+
+        // test doesn't work for now
+        /*assertEquals(
+            getTestData().toString(), response.bodyAsText()
+        )*/
+        assertEquals(HttpStatusCode.OK, response.status)
+    }
 }
