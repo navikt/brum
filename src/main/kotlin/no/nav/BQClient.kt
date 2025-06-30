@@ -1,4 +1,4 @@
-package no.nav.models
+package no.nav
 
 import com.google.auth.oauth2.ServiceAccountCredentials
 import com.google.cloud.bigquery.BigQuery
