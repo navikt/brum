@@ -7,7 +7,6 @@ import io.ktor.client.request.setBody
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.Authentication
-import io.ktor.server.auth.UserIdPrincipal
 import io.ktor.server.auth.bearer
 import no.nav.models.TexasResponse
 import no.nav.models.TexasRequest
@@ -16,7 +15,7 @@ import com.auth0.jwt.JWT
 
 
 fun Application.configureAuth(client: HttpClient, env: Environment) {
-    install(Authentication){
+    install(Authentication) {
         bearer("auth-bearer") {
             authenticate { credentials ->
                 val response = client.post(env.texasEndpoint) {
