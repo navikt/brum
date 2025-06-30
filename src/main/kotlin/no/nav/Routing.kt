@@ -9,44 +9,34 @@ import io.ktor.server.http.content.staticFiles
 import no.nav.models.AuthenticatedUser
 
 fun Application.configureRouting() {
-    routing {   authenticate("auth-bearer") {
-        get("/testAuth") {
-            logger.info("ok")
-            call.respond("ok")
-        }
-    }
-
-        staticFiles("/testData", File("files"))
-
-        get("/auth") {
-            logger.info("Request received")
-            call.respond(
-                mapOf(
-                    "active" to true
-                )
-            )
-        }
-            get("/auth") {
-                logger.info("Request received")
-                call.respond(
-                    mapOf(
-                        "active" to true
-                    )
-                )
+    routing {
+        authenticate("auth-bearer") {
+            get("/testAuth") {
+                logger.info("ok")
+                call.respond("ok")
             }
+        }
+
+
+
+        get("/testData") {
+            logger.info("data requested")
+            call.respond(getTestData())
+
+        }
 
 
         authenticate("auth-bearer") {
-                get("/userInfo") {
-                    val user = call.principal<AuthenticatedUser>() ?: error("No authenticated user")
-                    call.respond(
-                        mapOf(
-                            "oid" to user.oid,
-                            "username" to user.username,
-                            "groups" to user.groups
-                        )
+            get("/userInfo") {
+                val user = call.principal<AuthenticatedUser>() ?: error("No authenticated user")
+                call.respond(
+                    mapOf(
+                        "oid" to user.oid,
+                        "username" to user.username,
+                        "groups" to user.groups
                     )
-                }
+                )
+            }
         }
     }
 }
