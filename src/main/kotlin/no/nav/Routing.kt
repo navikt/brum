@@ -1,5 +1,6 @@
 package no.nav
 
+import io.ktor.http.HttpStatusCode
 import com.fasterxml.jackson.module.kotlin.jsonMapper
 import io.ktor.http.ContentType
 import io.ktor.server.application.*
@@ -8,7 +9,7 @@ import io.ktor.server.routing.*
 import io.ktor.server.auth.*
 import io.ktor.server.http.content.staticFiles
 import kotlinx.serialization.json.Json
-import java.io.File
+import no.nav.models.AuthenticatedUser
 
 data class Test(val Gjennomforingsgruppe: Int, val Landegruppe3: Int, val SBestemt: Int, val STilpasset: Int)
 
