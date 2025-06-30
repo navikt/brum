@@ -18,11 +18,9 @@ fun Application.configureRouting() {
         }
 
 
-        authenticate("auth-bearer") {
-            get("/testData") {
-                logger.info("data requested")
-                call.respond(getTestData())
-            }
+        get("/testData") {
+            logger.info("data requested")
+            call.respond(getTestData())
         }
 
 
