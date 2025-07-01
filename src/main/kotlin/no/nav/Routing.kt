@@ -25,7 +25,7 @@ fun Application.configureRouting() {
 
 
 
-//        authenticate("auth-bearer") {
+        authenticate("auth-bearer") {
             get("/userInfo") {
                 try {
                     val user = call.principal<AuthenticatedUser>()
@@ -56,7 +56,7 @@ fun Application.configureRouting() {
                     )
                 }
             }
-//        }
+        }
 
     }
 }
