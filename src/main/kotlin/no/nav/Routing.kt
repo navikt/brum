@@ -27,16 +27,37 @@ fun Application.configureRouting() {
 
         authenticate("auth-bearer") {
             get("/userInfo") {
-                val user = call.principal<AuthenticatedUser>() ?: error("No authenticated user")
-                call.respond(
-                    mapOf(
-                        "oid" to user.oid,
-                        "username" to user.username,
-                        "groups" to user.groups
+                try {
+                    val user = call.principal<AuthenticatedUser>()
+                    if (user == null) {
+                        logger.warn("No authenticated user found in principal for /userInfo request")
+                        call.respond(
+                            HttpStatusCode.Unauthorized,
+                            mapOf("error" to "Unauthorized: No authenticated user found")
+                        )
+                        return@get
+                    }
+
+                    logger.info("Authenticated user fetched for /userInfo: oid=${user.oid}, username=${user.username}, groups=${user.groups}")
+
+                    call.respond(
+                        HttpStatusCode.OK,
+                        mapOf(
+                            "oid" to user.oid,
+                            "username" to user.username,
+                            "groups" to user.groups
+                        )
                     )
-                )
+                } catch (e: Exception) {
+                    logger.error("Exception while handling /userInfo", e)
+                    call.respond(
+                        HttpStatusCode.InternalServerError,
+                        mapOf("error" to "Internal server error: ${e.message}")
+                    )
+                }
             }
         }
+
     }
 }
 
