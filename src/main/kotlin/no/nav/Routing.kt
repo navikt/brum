@@ -21,7 +21,6 @@ fun Application.configureRouting() {
 
         get("/gjennomforing") {
             logger.info("ok")
-            //call.respond("ok")
             try {
                 val result = getGjennomforinger("brum-dev-b72f")
                 call.respondText(result, ContentType.Text.Plain)
