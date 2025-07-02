@@ -3,7 +3,6 @@ package no.nav
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.*
-import io.ktor.server.application.call
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.auth.*
@@ -18,6 +17,13 @@ fun Application.configureRouting() {
             }
         }
 
+        authenticate("auth-bearer") {
+            get("/testData") {
+                logger.info("data requested")
+                call.respond(getTestData())
+            }
+        }
+
         get("/gjennomforing") {
             logger.info("ok")
             try {
@@ -28,15 +34,7 @@ fun Application.configureRouting() {
                 call.respond(HttpStatusCode.InternalServerError, "Feil ved henting av gjennomforing: ${e.message}")
             }
         }
-
-
-        get("/testData") {
-            logger.info("data requested")
-            call.respond(getTestData())
-        }
-
-
-
+        
         authenticate("auth-bearer") {
             get("/userInfo") {
                 try {
