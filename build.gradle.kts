@@ -38,7 +38,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    implementation("com.google.cloud:google-cloud-bigquery:2.38.0")
+    implementation("com.google.cloud:google-cloud-bigquery:2.52.0")
     implementation("com.google.cloud:google-cloud-secretmanager:2.34.0")
 }
 
