@@ -16,7 +16,7 @@ class MainTest {
         application {
             module()
         }
-        val response = client.get("/testData")
+        client.get("/testData")
 
         // test doesn't work for now
         /*assertEquals(

@@ -22,7 +22,7 @@ fun Application.configureAuth(client: HttpClient, env: Environment) {
                     contentType(ContentType.Application.Json)
                     setBody(
                         TexasRequest(
-                            identityProvider = "azuread",
+                            identity_provider = "azuread",
                             token = credentials.token
                         )
                     )
