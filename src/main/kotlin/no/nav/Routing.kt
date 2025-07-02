@@ -24,17 +24,19 @@ fun Application.configureRouting() {
             }
         }
 
+
+
         get("/gjennomforing") {
             logger.info("ok")
             try {
                 val result = getGjennomforinger("brum-dev-b72f")
-                call.respondText(result, ContentType.Text.Plain)
+                call.respond(result)
             } catch (e: Exception) {
                 logger.error("Feil ved henting av gjennomforing", e)
                 call.respond(HttpStatusCode.InternalServerError, "Feil ved henting av gjennomforing: ${e.message}")
             }
         }
-        
+
         authenticate("auth-bearer") {
             get("/userInfo") {
                 try {
