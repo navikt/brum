@@ -11,29 +11,27 @@ import no.nav.models.AuthenticatedUser
 fun Application.configureRouting() {
     routing {
         authenticate("auth-bearer") {
-            get("/testAuth") {
-                logger.info("ok")
-                call.respond("ok")
-            }
-        }
-
-        authenticate("auth-bearer") {
             get("/testData") {
                 logger.info("data requested")
                 call.respond(getTestData())
             }
         }
 
-
-
         get("/gjennomforing") {
             logger.info("ok")
             try {
                 val result = getGjennomforinger("brum-dev-b72f")
-                call.respond(result)
+                call.respondText(result, ContentType.Text.Plain)
             } catch (e: Exception) {
                 logger.error("Feil ved henting av gjennomforing", e)
                 call.respond(HttpStatusCode.InternalServerError, "Feil ved henting av gjennomforing: ${e.message}")
+            }
+        }
+
+        authenticate("auth-bearer") {
+            get("/testAuth") {
+                logger.info("ok")
+                call.respond("ok")
             }
         }
 
