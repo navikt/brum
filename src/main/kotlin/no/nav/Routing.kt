@@ -1,5 +1,6 @@
 package no.nav
 
+import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -20,6 +21,17 @@ fun Application.configureRouting() {
             get("/testData") {
                 logger.info("data requested")
                 call.respond(getTestData())
+            }
+        }
+
+        get("/gjennomforing") {
+            logger.info("ok")
+            try {
+                val result = getGjennomforinger("brum-dev-b72f")
+                call.respondText(result, ContentType.Text.Plain)
+            } catch (e: Exception) {
+                logger.error("Feil ved henting av gjennomforing", e)
+                call.respond(HttpStatusCode.InternalServerError, "Feil ved henting av gjennomforing: ${e.message}")
             }
         }
         

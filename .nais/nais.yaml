@@ -21,6 +21,12 @@ spec:
   env:
   - name: BRUM_FRONTEND_URL
     value: "brum.intern.dev.nav.no"
+  - name: BIGQUERY_PROJECT_ID
+    value: "brum-dev-b72f"
+  gcp:
+    bigQueryDatasets:
+      - name: tiltak_bronze # Så langt bare ett eksempelsett. Ikke det vi skal bruke senere
+        permission: READ
   image: {{image}}
   port: 8080
   replicas:
