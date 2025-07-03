@@ -12,9 +12,13 @@ import no.nav.models.AuthenticatedUser
 fun Application.configureRouting() {
     routing {
         authenticate("auth-bearer") {
-            get("/testData") {
-                logger.info("data requested" + call.receiveParameters())
+            get("/testData{datasetnr}") {
                 call.respond(getTestData())
+            }
+        }
+        get("/user/{login}") {
+            if (call.parameters["login"] == "admin") {
+                // ...
             }
         }
 
