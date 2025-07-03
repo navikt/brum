@@ -6,13 +6,14 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.auth.*
+import io.ktor.server.request.receiveParameters
 import no.nav.models.AuthenticatedUser
 
 fun Application.configureRouting() {
     routing {
         authenticate("auth-bearer") {
             get("/testData") {
-                logger.info("data requested")
+                logger.info("data requested" + call.receiveParameters())
                 call.respond(getTestData())
             }
         }
