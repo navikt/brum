@@ -58,7 +58,7 @@ jobs:
           RESOURCE: .nais/dev.yaml
           CLUSTER: dev-gcp
           IMAGE: ${{ needs.test-build-deploy.outputs.image }}
-    deploy-prod:
+  deploy-prod:
       runs-on: ubuntu-latest
       permissions:
         contents: read
