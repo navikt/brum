@@ -1,4 +1,4 @@
-package no.nav
+package no.nav.api
 
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
@@ -6,7 +6,6 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.auth.*
-import io.ktor.server.request.receiveParameters
 import no.nav.data.getGjennomforinger
 import no.nav.data.getTestData
 import no.nav.logger
