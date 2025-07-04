@@ -3,11 +3,9 @@ kind: Application
 metadata:
   name: brum-api
   namespace: brum
-  annotations:
-    texas.nais.io/enabled: "true"
 spec:
   ingresses:
-    - https://brum-api.intern.dev.nav.no
+    - https://brum-api.intern.nav.no
   azure:
     application:
       enabled: true
@@ -19,10 +17,10 @@ spec:
           namespace: nais
         - application: brum
   env:
-  - name: BRUM_FRONTEND_URL
-    value: "brum.intern.dev.nav.no"
-  - name: BIGQUERY_PROJECT_ID
-    value: "brum-dev-b72f"
+    - name: BRUM_FRONTEND_URL
+      value: "brum.intern.nav.no"
+    - name: BIGQUERY_PROJECT_ID
+      value: "brum-prod-6e57"
   gcp:
     bigQueryDatasets:
       - name: tiltak_bronze # Så langt bare ett eksempelsett. Ikke det vi skal bruke senere
@@ -36,7 +34,3 @@ spec:
     requests:
       cpu: 50m
       memory: 32Mi
-  observability:
-    logging:
-      destinations:
-        - id: loki

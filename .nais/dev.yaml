@@ -1,0 +1,36 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: brum-api
+  namespace: brum
+spec:
+  ingresses:
+    - https://brum-api.intern.dev.nav.no
+  azure:
+    application:
+      enabled: true
+      allowAllUsers: true
+  accessPolicy:
+    inbound:
+      rules:
+        - application: azure-token-generator
+          namespace: nais
+        - application: brum
+  env:
+  - name: BRUM_FRONTEND_URL
+    value: "brum.intern.dev.nav.no"
+  - name: BIGQUERY_PROJECT_ID
+    value: "brum-dev-b72f"
+  gcp:
+    bigQueryDatasets:
+      - name: tiltak_bronze # Så langt bare ett eksempelsett. Ikke det vi skal bruke senere
+        permission: READ
+  image: {{image}}
+  port: 8080
+  replicas:
+    max: 1
+    min: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 32Mi
