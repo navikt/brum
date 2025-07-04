@@ -55,7 +55,7 @@ jobs:
           persist-credentials: false
       - uses: nais/deploy/actions/deploy@7c152a10f4da3ca352d57a25eba0b3a8e04882f9
         env:
-          RESOURCE: .nais/dev.yaml
+          RESOURCE: .nais/dev.yml
           CLUSTER: dev-gcp
           IMAGE: ${{ needs.test-build-deploy.outputs.image }}
   deploy-prod:
@@ -70,6 +70,6 @@ jobs:
             persist-credentials: false
         - uses: nais/deploy/actions/deploy@7c152a10f4da3ca352d57a25eba0b3a8e04882f9
           env:
-            RESOURCE: .nais/prod.yaml
+            RESOURCE: .nais/prod.yml
             CLUSTER: prod-gcp
             IMAGE: ${{ needs.test-build-deploy.outputs.image }}

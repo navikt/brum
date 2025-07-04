@@ -25,7 +25,7 @@ jobs:
         env:
           CLUSTER: dev-fss
           RESOURCE: .nais/naiserator.yaml
-          VARS: .nais/config-dev.yaml
+          VARS: .nais/config-dev.yml
           IMAGE: ${{ inputs.image_navn }}
 
   deploy-dev-gcp:
