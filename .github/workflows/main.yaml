@@ -43,7 +43,7 @@ jobs:
       - uses: github/codeql-action/upload-sarif@181d5eefc20863364f96762470ba6f862bdef56b
         with:
           sarif_file: 'trivy.sarif'
-  deploy:
+  deploy-dev:
     runs-on: ubuntu-latest
     permissions:
         contents: read
@@ -58,3 +58,18 @@ jobs:
           RESOURCE: .nais/nais.yaml
           CLUSTER: dev-gcp
           IMAGE: ${{ needs.test-build-deploy.outputs.image }}
+    deploy-prod:
+      runs-on: ubuntu-latest
+      permissions:
+        contents: read
+        id-token: write
+      needs: deploy-dev
+      steps:
+        - uses: actions/checkout@v4
+          with:
+            persist-credentials: false
+        - uses: nais/deploy/actions/deploy@7c152a10f4da3ca352d57a25eba0b3a8e04882f9
+          env:
+            RESOURCE: .nais/nais.yaml
+            CLUSTER: prod-gcp
+            IMAGE: ${{ needs.test-build-deploy.outputs.image }}
