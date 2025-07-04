@@ -7,6 +7,9 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.auth.*
 import io.ktor.server.request.receiveParameters
+import no.nav.data.getGjennomforinger
+import no.nav.data.getTestData
+import no.nav.logger
 import no.nav.models.AuthenticatedUser
 
 fun Application.configureRouting() {

@@ -1,4 +1,4 @@
-package no.nav
+package no.nav.data
 
 import com.google.cloud.bigquery.*
 import java.util.*

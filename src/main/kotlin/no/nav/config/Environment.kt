@@ -1,4 +1,4 @@
-package no.nav
+package no.nav.config
 
 data class Environment (
     val texasEndpoint: String = getEnvVar("NAIS_TOKEN_INTROSPECTION_ENDPOINT", "http://localhost:8080/auth"),

@@ -1,4 +1,4 @@
-package no.nav
+package no.nav.auth
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -12,6 +12,8 @@ import no.nav.models.TexasResponse
 import no.nav.models.TexasRequest
 import no.nav.models.AuthenticatedUser
 import com.auth0.jwt.JWT
+import no.nav.config.Environment
+import no.nav.logger
 
 
 fun Application.configureAuth(client: HttpClient, env: Environment) {
@@ -33,6 +35,7 @@ fun Application.configureAuth(client: HttpClient, env: Environment) {
                 }
                 if (response.active) {
                     val jwt = JWT.decode(credentials.token)
+                    println("Decoded JWT: $jwt")
                     val oid = jwt.getClaim("oid").asString() ?: "unknown"
                     val username = jwt.getClaim("preferred_username").asString() ?: "unknown"
                     val groups = jwt.getClaim("groups").asList(String::class.java) ?: emptyList()

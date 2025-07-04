@@ -1,4 +1,4 @@
-package no.nav
+package no.nav.data
 
 data class TestData(val Gjennomforingsgruppe: Int, val Landegruppe3: Int, val SBestemt: Int, val STilpasset: Int)
 

@@ -9,6 +9,9 @@ import io.ktor.serialization.jackson.jackson
 import io.ktor.server.application.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import no.nav.api.configureRouting
+import no.nav.auth.configureAuth
+import no.nav.config.Environment
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 

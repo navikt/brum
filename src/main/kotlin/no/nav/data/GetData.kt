@@ -1,4 +1,4 @@
-package no.nav
+package no.nav.data
 
 fun getGjennomforinger(prosjektId: String): String {
     val query = """
@@ -7,5 +7,6 @@ fun getGjennomforinger(prosjektId: String): String {
         LIMIT 10
     """.trimIndent()
     val results = runBigQuery(query, prosjektId)
+    println(results)
     return results.toString()
 }
