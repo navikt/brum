@@ -35,12 +35,16 @@ fun Application.configureAuth(client: HttpClient, env: Environment) {
                 }
                 if (response.active) {
                     val jwt = JWT.decode(credentials.token)
-                    println("Decoded JWT: $jwt")
+                    val azp = jwt.getClaim("azp").asString() ?: "unknown"
+                    val azpName = jwt.getClaim("azp_name").asString() ?: "unknown"
+                    val navIdent = jwt.getClaim("NAVident").asString() ?: "unknown"
+                    val roles = jwt.getClaim("roles").asList(String::class.java) ?: emptyList<String>()
+                    val scp = jwt.getClaim("scp").asString()?.split(" ") ?: emptyList<String>()
                     val oid = jwt.getClaim("oid").asString() ?: "unknown"
                     val username = jwt.getClaim("preferred_username").asString() ?: "unknown"
-                    val groups = jwt.getClaim("groups").asList(String::class.java) ?: emptyList()
-
-                    logger.info("Authenticated user oid=$oid username=$username groups=$groups")
+                    val groups = jwt.getClaim("groups").asList(String::class.java) ?: emptyList<String>()
+                    val idtyp = jwt.getClaim("idtyp").asString()
+                    logger.info(" User authenticated: azp=$azp\n, azp_name=$azpName\n, NAVident=$navIdent\n, roles=$roles\n, scp=$scp\n, oid=$oid\n, username=$username\n, groups=$groups\n, idtyp=$idtyp\n")
 
                     AuthenticatedUser(oid, username, groups)
                 } else {
