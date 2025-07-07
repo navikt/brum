@@ -58,8 +58,8 @@ fun Application.configureRouting() {
                         HttpStatusCode.OK,
                         mapOf(
                             "NAVident" to user.NAVident,
-                            "username" to user.username,
-                            "name" to user.username
+                            "username" to user.email,
+                            "name" to user.name
                         )
                     )
                 } catch (e: Exception) {

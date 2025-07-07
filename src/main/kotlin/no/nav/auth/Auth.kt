@@ -36,9 +36,9 @@ fun Application.configureAuth(client: HttpClient, env: Environment) {
                 if (response.active) {
                     val jwt = JWT.decode(credentials.token)
                     val navIdent = jwt.getClaim("NAVident").asString() ?: "unknown"
-                    val username = jwt.getClaim("preferred_username").asString() ?: "unknown"
+                    val email = jwt.getClaim("preferred_username").asString() ?: "unknown"
                     val name = jwt.getClaim("name").asString() ?: "unknown"
-                    AuthenticatedUser(navIdent, username, name)
+                    AuthenticatedUser(navIdent, email, name)
                 } else {
                     null
                 }
