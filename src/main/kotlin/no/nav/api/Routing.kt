@@ -6,6 +6,7 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.auth.*
+import io.ktor.server.request.uri
 import no.nav.data.getGjennomforinger
 import no.nav.data.getTestData1
 import no.nav.data.getTestData2
@@ -21,7 +22,7 @@ fun Application.configureRouting() {
                     1 -> call.respond(getTestData1())
                     2 -> call.respond(getTestData2())
                     else -> call.respondText(
-                        "Invalid dataset number. Number received: $datasetnr. Full request: ${call.request.toString()}",
+                        "Invalid dataset number. Number received: $datasetnr. Full request: ${call.request.uri}",
                         status = HttpStatusCode.BadRequest
                     )
                 }
