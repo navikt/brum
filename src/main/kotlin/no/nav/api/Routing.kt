@@ -14,10 +14,16 @@ import no.nav.models.AuthenticatedUser
 fun Application.configureRouting() {
     routing {
         authenticate("auth-bearer") {
-            get("/testData{datasetnr}") {
-                call.respond(getTestData())
+            get("/testData/{datasetnr}") {
+                val datasetnr = call.parameters["datasetnr"]?.toIntOrNull()
+                when (datasetnr) {
+                    1 -> call.respond(getTestData1())
+                    2 -> call.respond(getTestData2())
+                    else -> call.respondText("Invalid dataset number", status = HttpStatusCode.BadRequest)
+                }
             }
         }
+        
         get("/user/{login}") {
             if (call.parameters["login"] == "admin") {
                 // ...
