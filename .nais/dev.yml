@@ -23,7 +23,7 @@ spec:
     value: "brum-dev-b72f"
   gcp:
     bigQueryDatasets:
-      - name: tiltak_bronze # Så langt bare ett eksempelsett. Ikke det vi skal bruke senere
+      - name: tiltak_silver # Så langt bare ett eksempelsett. Ikke det vi skal bruke senere
         permission: READ
   image: {{image}}
   port: 8080
