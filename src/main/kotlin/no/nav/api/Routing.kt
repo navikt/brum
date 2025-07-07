@@ -58,7 +58,7 @@ fun Application.configureRouting() {
                         HttpStatusCode.OK,
                         mapOf(
                             "NAVident" to user.NAVident,
-                            "username" to user.email,
+                            "email" to user.email,
                             "name" to user.name
                         )
                     )
