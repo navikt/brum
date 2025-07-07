@@ -20,7 +20,10 @@ fun Application.configureRouting() {
                 when (datasetnr) {
                     1 -> call.respond(getTestData1())
                     2 -> call.respond(getTestData2())
-                    else -> call.respondText("Invalid dataset number", status = HttpStatusCode.BadRequest)
+                    else -> call.respondText(
+                        "Invalid dataset number. Number received: $datasetnr",
+                        status = HttpStatusCode.BadRequest
+                    )
                 }
             }
         }
