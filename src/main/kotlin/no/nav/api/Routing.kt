@@ -15,8 +15,8 @@ import no.nav.models.AuthenticatedUser
 fun Application.configureRouting() {
     routing {
         authenticate("auth-bearer") {
-            get("/testData/{datasetnr}") {
-                val datasetnr = call.parameters["datasetnr"]?.toIntOrNull()
+            get("/testData") {
+                val datasetnr = call.request.queryParameters["datasetnr"]?.toIntOrNull()
                 when (datasetnr) {
                     1 -> call.respond(getTestData1())
                     2 -> call.respond(getTestData2())
