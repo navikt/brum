@@ -21,7 +21,7 @@ fun Application.configureRouting() {
                     1 -> call.respond(getTestData1())
                     2 -> call.respond(getTestData2())
                     else -> call.respondText(
-                        "Invalid dataset number. Number received: $datasetnr",
+                        "Invalid dataset number. Number received: $datasetnr. Full request: ${call.request.toString()}",
                         status = HttpStatusCode.BadRequest
                     )
                 }
