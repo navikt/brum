@@ -54,15 +54,12 @@ fun Application.configureRouting() {
                         )
                         return@get
                     }
-
-                    logger.info("Authenticated user fetched for /userInfo: oid=${user.oid}, username=${user.username}, groups=${user.groups}")
-
                     call.respond(
                         HttpStatusCode.OK,
                         mapOf(
-                            "oid" to user.oid,
+                            "NAVident" to user.NAVident,
                             "username" to user.username,
-                            "groups" to user.groups
+                            "name" to user.username
                         )
                     )
                 } catch (e: Exception) {
