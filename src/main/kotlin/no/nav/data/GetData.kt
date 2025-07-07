@@ -1,4 +1,4 @@
-package no.nav
+package no.nav.data
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.jsonMapper
