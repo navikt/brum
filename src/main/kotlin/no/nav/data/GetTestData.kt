@@ -17,7 +17,7 @@ fun getTestData2(): Array<TestData> {
     return objectMapper.readValue(json)
 }
 
-fun getNoBehov(): Array<Any> {
+fun getNoBehov(): Map<String, Any> {
     val json = TestData::class.java.getResource("/testdata/real_no_behov.json").readText()
     return objectMapper.readValue(json)
 }
