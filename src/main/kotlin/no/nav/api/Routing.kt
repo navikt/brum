@@ -8,6 +8,7 @@ import io.ktor.server.routing.*
 import io.ktor.server.auth.*
 import io.ktor.server.request.uri
 import no.nav.data.getGjennomforinger
+import no.nav.data.getNoBehov
 import no.nav.data.getTestData1
 import no.nav.data.getTestData2
 import no.nav.logger
@@ -17,12 +18,13 @@ fun Application.configureRouting() {
     routing {
         authenticate("auth-bearer") {
             get("/testData") {
-                val datasetnr = call.request.queryParameters["datasetnr"]?.toIntOrNull()
-                when (datasetnr) {
-                    1 -> call.respond(getTestData1())
-                    2 -> call.respond(getTestData2())
+                val dataset = call.request.queryParameters["dataset"]
+                when (dataset) {
+                    "Test1" -> call.respond(getTestData1())
+                    "Test2" -> call.respond(getTestData2())
+                    "No behov" -> call.respond(getNoBehov())
                     else -> call.respondText(
-                        "Invalid dataset number. Number received: $datasetnr. Full request: ${call.request.uri}",
+                        "Invalid dataset number. No such dataset: $dataset. Full request: ${call.request.uri}",
                         status = HttpStatusCode.BadRequest
                     )
                 }
