@@ -5,10 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
- * Modell for forespørsler til Texas-introspeksjon.
+ * Modell for en autentisert bruker.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class TexasRequest(
-    @JsonProperty("identity_provider") val identityProvider: String,
-    val token: String
+data class BrukerInfoRespons(
+    @JsonProperty("NAVident") val navIdent: String,
+    val email: String,
+    val name: String
 )

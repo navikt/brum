@@ -1,9 +1,5 @@
 package no.nav
 
-
-
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
 import io.ktor.http.*
 import io.ktor.serialization.jackson.jackson
 import io.ktor.server.application.*
@@ -12,17 +8,21 @@ import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import no.nav.api.configureRouting
 import no.nav.auth.configureAuth
 import no.nav.config.Environment
+import no.nav.config.createHttpClient
+import org.slf4j.LoggerFactory
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 val logger = org.slf4j.LoggerFactory.getLogger("Main")
 
+/**
+ * Hovedfunksjonen for Ktor-applikasjonen.
+ * Starter Ktor-serveren og konfigurerer moduler for autentisering, ruter og CORS.
+ *
+ * @param args Kommandolinjeargumenter
+ */
 fun Application.module() {
-    val client = HttpClient(CIO) {
-        install(io.ktor.client.plugins.contentnegotiation.ContentNegotiation) {
-            jackson()
-        }
-    }
+    val httpClient = createHttpClient()
     val env = Environment()
 
     install(io.ktor.server.plugins.cors.routing.CORS) {
@@ -35,7 +35,8 @@ fun Application.module() {
     install(ContentNegotiation) {
         jackson()
     }
-    configureAuth(client, env)
+
+    configureAuth(httpClient, env)
     configureRouting()
 }
 
