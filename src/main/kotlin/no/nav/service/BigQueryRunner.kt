@@ -16,7 +16,6 @@ class BigQueryRunner {
      * @return Iterator over resultatrader.
      */
     fun runQuery(query: String, prosjektId: String): Iterable<FieldValueList> {
-        // ← here we explicitly set the project:
         val bigquery = BigQueryOptions.newBuilder()
             .setProjectId(prosjektId)
             .build()
