@@ -5,6 +5,8 @@ import no.nav.config.Environment
 import no.nav.models.GjennomforingRespons
 import java.time.Instant
 import java.time.LocalDate
+import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 
 class GjennomforingService{
     private val queryRunner: BigQueryRunner = BigQueryRunner()
@@ -32,6 +34,12 @@ class GjennomforingService{
             )
         }
 
-        return jacksonObjectMapper().writeValueAsString(list)
+
+
+        val mapper = jacksonObjectMapper()
+            .registerModule(JavaTimeModule())
+            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+
+        return mapper.writeValueAsString(list)
     }
 }
