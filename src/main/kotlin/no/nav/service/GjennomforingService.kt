@@ -1,13 +1,17 @@
 package no.nav.service
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import no.nav.config.Environment
 import no.nav.models.GjennomforingRespons
 import java.time.Instant
 import java.time.LocalDate
 
-class GjennomforingService(
+class GjennomforingService{
     private val queryRunner: BigQueryRunner = BigQueryRunner()
-) {
+
+    fun hentGjennomforinger(env: Environment){
+    return hentGjennomforinger(env)
+}
     /**
      * Henter siste 10 gjennomføringer som JSON.
      */
@@ -25,20 +29,6 @@ class GjennomforingService(
                 navn               = row["navn"].stringValue,
                 startDato          = LocalDate.parse(row["start_dato"].stringValue),
                 sluttDato          = row["slutt_dato"].takeIf { !it.isNull }?.stringValue?.let(LocalDate::parse),
-                opprettetTidspunkt = Instant.ofEpochSecond(
-                    row["opprettet_tidspunkt"].doubleValue.toLong(),
-                    (((row["opprettet_tidspunkt"].doubleValue % 1) * 1_000_000_000).toLong())
-                ),
-                oppdatertTidspunkt = Instant.ofEpochSecond(
-                    row["oppdatert_tidspunkt"].doubleValue.toLong(),
-                    (((row["oppdatert_tidspunkt"].doubleValue % 1) * 1_000_000_000).toLong())
-                ),
-                avsluttetTidspunkt = row["avsluttet_tidspunkt"].takeIf { !it.isNull }?.doubleValue?.let {
-                    Instant.ofEpochSecond(
-                        it.toLong(),
-                        (((it % 1) * 1_000_000_000).toLong())
-                    )
-                }
             )
         }
 

@@ -7,29 +7,35 @@ import java.util.UUID
 /**
  * Utfører spørringer mot Google BigQuery.
  */
-class BigQueryRunner() {
+class BigQueryRunner {
     /**
      * Kjører en spørring mot BigQuery
      *
-     * @param sql       SQL-spørringen.
-     * @param prosjekt  Google Cloud-prosjekt-ID.
+     * @param query       SQL-spørringen.
+     * @param prosjektId  Google Cloud-prosjekt-ID.
      * @return Iterator over resultatrader.
-     * */
-    fun runQuery(query: String, prosjekt: String): Iterable<FieldValueList>{
-        val bigQuery = BigQueryOptions.getDefaultInstance().service
+     */
+    fun runQuery(query: String, prosjektId: String): Iterable<FieldValueList> {
+        // ← here we explicitly set the project:
+        val bigquery = BigQueryOptions.newBuilder()
+            .setProjectId(prosjektId)
+            .build()
+            .service
 
-        val config = QueryJobConfiguration.newBuilder(query)
+        val queryConfig = QueryJobConfiguration.newBuilder(query)
             .setUseLegacySql(false)
             .build()
 
-        val jobId = JobId.of(prosjekt, UUID.randomUUID().toString())
-        val jobInfo = JobInfo.newBuilder(config).setJobId(jobId).build()
-        val job = bigQuery.create(jobInfo)
+        val jobId = JobId.of(prosjektId, UUID.randomUUID().toString())
+        val queryJob = bigquery
+            .create(JobInfo.newBuilder(queryConfig).setJobId(jobId).build())
+            .waitFor()
 
-        if (job == null || job.status.error != null) {
-            throw RuntimeException("Query failed: ${job?.status?.error}")
+        if (queryJob == null || queryJob.status.error != null) {
+            throw RuntimeException("Query failed: ${queryJob?.status?.error}")
         }
-        return job.getQueryResults().iterateAll()
+
+        return queryJob.getQueryResults().iterateAll()
     }
 }
 
