@@ -22,6 +22,10 @@ fun getNoBehov(): Array<Any> {
     return objectMapper.readValue(json)
 }
 
+fun getRealTestData(): String {
+    return TestData::class.java.getResource("/testdata/real_data.json").readText()
+}
+
 
 
 
