@@ -7,6 +7,7 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.server.testing.*
+import no.nav.data.getNoBehov
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -16,13 +17,12 @@ class MainTest {
         application {
             module()
         }
-        client.get("/testData")
+        val response = client.get("/testData?dataset=No behov")
 
-        // test doesn't work for now
-        /*assertEquals(
-            getTestData().toString(), response.bodyAsText()
+        assertEquals(
+            getNoBehov(), response.body()
         )
-        assertEquals(HttpStatusCode.OK, response.status)*/
+        assertEquals(HttpStatusCode.OK, response.status)
 
     }
 }
