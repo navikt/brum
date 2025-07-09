@@ -4,6 +4,7 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.uri
 import io.ktor.server.routing.*
 import io.ktor.server.response.*
+import no.nav.data.getMiniCsv
 import no.nav.data.getNoBehov
 import no.nav.data.getRealTestData
 import no.nav.data.getTestData1
@@ -18,6 +19,7 @@ fun Route.testDataRoutes() {
             "Test2" -> call.respond(getTestData2())
             "No behov" -> call.respond(getNoBehov())
             "Real" -> call.respondText(getRealTestData())
+            "Mini.csv" -> call.respondText(getMiniCsv())
             else -> call.respondText(
                 "Ugyldig datasettnummer. Datasettet : $dataset. finnes ikke. Fullstendig forespørsel: ${call.request.uri}",
                 status = HttpStatusCode.BadRequest

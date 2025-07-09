@@ -23,10 +23,12 @@ fun getNoBehov(): Array<Any> {
 }
 
 fun getRealTestData(): String {
-    return TestData::class.java.getResource("/testdata/real_data.json").readText()
+    return TestData::class.java.getResource("/testdata/real_data.csv").readText()
 }
 
-
+fun getMiniCsv(): String {
+    return TestData::class.java.getResource("/testdata/mini.csv").readText()
+}
 
 
 
