@@ -23,7 +23,7 @@ fun getNoBehov(): Array<Any> {
 }
 
 fun getRealTestData(): String {
-    return TestData::class.java.getResource("/testdata/real_data.csv").readText()
+    return TestData::class.java.getResource("/testdata/real-test-data.csv").readText()
 }
 
 fun getMiniCsv(): String {
