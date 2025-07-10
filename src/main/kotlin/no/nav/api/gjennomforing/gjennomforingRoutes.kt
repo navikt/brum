@@ -5,6 +5,7 @@ import io.ktor.server.request.uri
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
+import no.nav.config.Environment
 import no.nav.logger
 import no.nav.models.FeilRespons
 import no.nav.service.GjennomforingService
@@ -19,7 +20,7 @@ fun Route.gjennomforingRuter() {
 
     get("/gjennomforinger") {
         try {
-            val json = service.hentGjennomforinger("brum-dev-b72f")
+            val json = service.hentGjennomforinger(envProjectId = "brum-dev-b72f")
             call.respond(HttpStatusCode.OK, json)
         } catch (e: Exception) {
             logger.error("Feil ved /gjennomforinger ${call.request.uri}", e)

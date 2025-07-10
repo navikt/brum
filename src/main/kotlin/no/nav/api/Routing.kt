@@ -2,11 +2,11 @@ package no.nav.api
 
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
+import no.nav.api.UkeAntallRecord.UkeAntallRecordRoute
 import no.nav.api.brukerRute.brukerRuter
 import no.nav.api.gjennomforing.gjennomforingRuter
 import no.nav.api.status.status
 import no.nav.api.test.testDataRoutes
-import no.nav.api.ukeAntall.ukeAntall
 
 /**
  * Konfigurerer HTTP-ruter for applikasjonen.
@@ -17,7 +17,7 @@ fun Application.configureRouting() {
         brukerRuter()
         gjennomforingRuter()
         testDataRoutes()
-        ukeAntall()
+        UkeAntallRecordRoute()
         status()
     }
 }

@@ -11,20 +11,20 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 class GjennomforingService{
     private val queryRunner: BigQueryRunner = BigQueryRunner()
 
-    fun hentGjennomforinger(env: Environment){
-    return hentGjennomforinger(env)
-}
+    fun hentGjennomforinger(envProjectId: String): String {
+    return hentGjennomforingerdata(envProjectId)
+    }
     /**
      * Henter siste 10 gjennomføringer som JSON.
      */
-    fun hentGjennomforinger(prosjektId: String): String {
+    fun hentGjennomforingerdata(envProjectId: String): String {
         val sql = """
             SELECT *
             FROM `brum-dev-b72f.tiltak_silver.gjennomforinger_silver`
             LIMIT 10
         """.trimIndent()
 
-        val rader = queryRunner.runQuery(sql, prosjektId)
+        val rader = queryRunner.runQuery(sql, envProjectId)
         val list = rader.map { row ->
             GjennomforingRespons(
                 gjennomforingId    = row["gjennomforing_id"].stringValue,
