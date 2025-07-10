@@ -14,14 +14,14 @@ fun Route.UkeAntallRecordRoute(){
         val service = UkeAntallRecord()
 
         get("/ukeAntall") {
-            val årParam = call.request.queryParameters["år"]
+            val årParam = call.request.queryParameters["ar"]
             val ukeParam = call.request.queryParameters["uke"]
-            val år = årParam?.toIntOrNull()
+            val ar = årParam?.toIntOrNull()
             val uke = ukeParam?.toIntOrNull()
-            if (år == null || uke == null) {
+            if (ar == null || uke == null) {
                 return@get call.respond(
                     HttpStatusCode.BadRequest,
-                    FeilRespons("Ugyldig eller manglende param: år=$årParam, uke=$ukeParam")
+                    FeilRespons("Ugyldig eller manglende param: ar=$årParam, uke=$ukeParam")
                 )
             }
 
@@ -29,7 +29,7 @@ fun Route.UkeAntallRecordRoute(){
                 val json = service.hentUkeAntallRecord(envProjectId = "brum-dev-b72f", årParam, ukeParam)
                 call.respond(HttpStatusCode.OK, json)
             } catch (e: Exception) {
-                logger.error("Feil ved /ukeAntall?år=$år&uke=$uke", e)
+                logger.error("Feil ved /ukeAntall?ar=$år&uke=$uke", e)
                 call.respond(
                     HttpStatusCode.InternalServerError,
                     FeilRespons("Feil ved henting av ukeAntallData: ${e.message}")

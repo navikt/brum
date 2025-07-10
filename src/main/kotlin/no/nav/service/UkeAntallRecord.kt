@@ -23,14 +23,14 @@ class UkeAntallRecord (){
                 avdeling,
                 antall
                 FROM `${prosjektId}.${dataNiva}`
-                WHERE år = @år AND uke = @uke
+                WHERE år = @ar AND uke = @uke
                 LIMIT 10
                 """.trimIndent()
 
             val rader = queryRunner.runQuery(sql, prosjektId)
             val list = rader.map { row ->
                 UkeAntallRecord(
-                    år            = row.get("år").numericValue.toInt(),
+                    ar            = row.get("år").numericValue.toInt(),
                     uke           = row.get("uke").numericValue.toInt(),
                     tiltaksnavn   = row.get("tiltaksnavn").stringValue,
                     innsatsgruppe = row.get("innsatsgruppe").stringValue,
