@@ -16,9 +16,6 @@ fun Route.testDataRoutes() {
     get("/testData") {
         val dataset = call.request.queryParameters["dataset"]
         when (dataset) {
-            "Test1" -> call.respond(getTestData1())
-            "Test2" -> call.respond(getTestData2())
-            "No behov" -> call.respond(getNoBehov())
             "Real" -> call.respondText(getRealTestData(), contentType = ContentType.Text.CSV)
             "Mini.csv" -> call.respondText(getMiniCsv(), contentType = ContentType.Text.CSV)
             else -> call.respondText(
