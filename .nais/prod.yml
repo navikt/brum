@@ -23,10 +23,10 @@ spec:
       value: "brum-prod-6e57"
   gcp:
     bigQueryDatasets:
-      - name: tiltak_bronze # Så langt bare ett eksempelsett. Ikke det vi skal bruke senere
+      - name: tiltak_silver # Så langt bare ett eksempelsett. Ikke det vi skal bruke senere
         permission: READ
-      - name: tiltak_gold # Så langt bare ett eksempelsett. Ikke det vi skal bruke senere
-                 - permission: READ
+      - name:  tiltak_gold # Så langt bare ett eksempelsett. Ikke det vi skal bruke senere
+        permission: READ
   image: {{image}}
   port: 8080
   replicas:
