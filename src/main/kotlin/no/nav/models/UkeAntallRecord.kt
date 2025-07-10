@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class UkeAntallRecord(
-    val ar: Int,
+    val aar: Int,
     val uke: Int,
     val tiltaksnavn: String,
     val innsatsgruppe: String,
