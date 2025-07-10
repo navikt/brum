@@ -1,8 +1,11 @@
 package no.nav.api.UkeAntallRecord
 
+import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
+import io.ktor.http.withCharset
 import io.ktor.server.auth.authenticate
 import io.ktor.server.response.respond
+import io.ktor.server.response.respondBytes
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.*
 import no.nav.logger
@@ -25,7 +28,12 @@ fun Route.ukeAntallRecordsRoute() {
 
         try {
             val json = service.ukeAntallRecords("brum-dev-b72f", år, uke)
-            call.respond(HttpStatusCode.OK, json)
+            val csvBytes = service.jsonToCsv(json)
+            call.respondBytes(
+                bytes = csvBytes,
+                contentType = ContentType.Text.CSV.withCharset(Charsets.UTF_8),
+                status = HttpStatusCode.OK
+            )
         } catch (e: Exception) {
             logger.error("Feil ved /ukeAntall?ar=$år&uke=$uke", e)
             call.respond(HttpStatusCode.InternalServerError,
