@@ -6,11 +6,7 @@ import io.ktor.server.request.uri
 import io.ktor.server.routing.*
 import io.ktor.server.response.*
 import no.nav.data.getMiniCsv
-import no.nav.data.getNoBehov
 import no.nav.data.getRealTestData
-import no.nav.data.getTestData1
-import no.nav.data.getTestData2
-
 
 fun Route.testDataRoutes() {
     get("/testData") {
