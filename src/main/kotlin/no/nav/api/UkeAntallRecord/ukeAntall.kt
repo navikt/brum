@@ -29,7 +29,7 @@ fun Route.UkeAntallRecordRoute(){
                 val json = service.hentUkeAntallRecord(envProjectId = "brum-dev-b72f", årParam, ukeParam)
                 call.respond(HttpStatusCode.OK, json)
             } catch (e: Exception) {
-                logger.error("Feil ved /ukeAntall?ar=$år&uke=$uke", e)
+                logger.error("Feil ved /ukeAntall?ar=$ar&uke=$uke", e)
                 call.respond(
                     HttpStatusCode.InternalServerError,
                     FeilRespons("Feil ved henting av ukeAntallData: ${e.message}")
