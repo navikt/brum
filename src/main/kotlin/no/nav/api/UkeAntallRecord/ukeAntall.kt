@@ -10,7 +10,7 @@ import no.nav.models.FeilRespons
 import no.nav.service.UkeAntallRecord
 
 fun Route.UkeAntallRecordRoute(){
-    authenticate("auth-bearer") {
+    //authenticate("auth-bearer") {
         val service = UkeAntallRecord()
 
         get("/ukeAntall") {
@@ -36,5 +36,5 @@ fun Route.UkeAntallRecordRoute(){
                 )
             }
         }
-    }
+    //}
 }
