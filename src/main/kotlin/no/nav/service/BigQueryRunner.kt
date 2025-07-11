@@ -1,6 +1,7 @@
 package no.nav.service
 
 import com.google.cloud.bigquery.*
+import no.nav.logger
 import java.util.UUID
 
 
@@ -33,7 +34,8 @@ class BigQueryRunner {
         if (queryJob == null || queryJob.status.error != null) {
             throw RuntimeException("Query failed: ${queryJob?.status?.error}")
         }
-
+        val creds = BigQueryOptions.getDefaultInstance().credentials
+//        logger.info("Running BigQuery as: ${creds.clientEmail}")
         return queryJob.getQueryResults().iterateAll()
     }
 }

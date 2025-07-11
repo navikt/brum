@@ -1,6 +1,9 @@
 package no.nav.service
 
+import com.fasterxml.jackson.dataformat.csv.CsvMapper
+import com.fasterxml.jackson.dataformat.csv.CsvSchema
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.models.UkeAntallRecord
 
 class UkeAntallService() {
@@ -32,5 +35,22 @@ class UkeAntallService() {
             )
         }
         return jacksonObjectMapper().writeValueAsString(records)
+    }
+
+
+    fun jsonToCsv(json: String): ByteArray {
+        val mapper = jacksonObjectMapper()
+        val records: List<UkeAntallRecord> = mapper.readValue(json)
+
+        val csvMapper = CsvMapper()
+        val schema: CsvSchema = csvMapper
+            .schemaFor(UkeAntallRecord::class.java)
+            .withHeader()
+
+
+        val csvString: String = csvMapper.writer(schema)
+            .writeValueAsString(records)
+
+        return csvString.toByteArray(Charsets.UTF_8)
     }
 }
