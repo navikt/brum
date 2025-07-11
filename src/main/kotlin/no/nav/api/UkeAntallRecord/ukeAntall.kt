@@ -31,7 +31,7 @@ fun Route.ukeAntallRecordsRoute() {
             )
 
         try {
-            val json = service.ukeAntallRecords("brum-dev-b72f", aar, uke)
+            val json = service.ukeAntallRecords("brum-prod-b72f", aar, uke)
             val csvBytes = service.jsonToCsv(json)
             call.respondBytes(
                 bytes = csvBytes,
