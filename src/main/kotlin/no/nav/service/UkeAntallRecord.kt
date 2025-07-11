@@ -20,7 +20,6 @@ class UkeAntallService() {
         `år`, `uke`, `tiltaksnavn`, `innsatsgruppe`, `avdeling`, `antall`
       FROM `brum-dev-b72f.tiltak_gold.uke_antall_gold_mock`
       WHERE `år` = $år AND `uke` = $uke
-      LIMIT 10
     """.trimIndent()
 
         val rows = queryRunner.runQuery(sql, prosjektId)
