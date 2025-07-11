@@ -18,7 +18,7 @@ class UkeAntallService() {
         val sql = """
       SELECT
         `år`, `uke`, `tiltaksnavn`, `innsatsgruppe`, `avdeling`, `antall`
-      FROM `brum-dev-b72f.tiltak_gold.uke_antall_gold_mock`
+      FROM `brum-prod-b72f.tiltak_gold.uke_antall_gold_mock`
       WHERE `år` = $aar AND `uke` = $uke
     """.trimIndent()
 
