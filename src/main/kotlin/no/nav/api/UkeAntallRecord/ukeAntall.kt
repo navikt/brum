@@ -39,7 +39,7 @@ fun Route.ukeAntallRecordsRoute() {
                 status = HttpStatusCode.OK
             )
         } catch (e: Exception) {
-            logger.error("Feil ved /ukeAntall?ar=$aar&uke=$uke", e)
+            logger.error("Feil ved /ukeAntall?aar=$aar&uke=$uke", e)
             call.respond(
                 HttpStatusCode.InternalServerError,
                 FeilRespons("Feil ved henting av ukeAntallData: ${e.message}")
