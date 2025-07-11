@@ -16,18 +16,22 @@ import no.nav.service.UkeAntallService
 fun Route.ukeAntallRecordsRoute() {
     get("/ukeAntall") {
         val service = UkeAntallService()
-        val årParam = call.request.queryParameters["ar"]
+        val aarParam = call.request.queryParameters["aar"]
         val ukeParam = call.request.queryParameters["uke"]
 
-        val år = årParam?.toIntOrNull()
-            ?: return@get call.respond(HttpStatusCode.BadRequest,
-                FeilRespons("Ugyldig eller manglende år: $årParam"))
+        val aar = aarParam?.toIntOrNull()
+            ?: return@get call.respond(
+                HttpStatusCode.BadRequest,
+                FeilRespons("Ugyldig eller manglende år: $aarParam")
+            )
         val uke = ukeParam?.toIntOrNull()
-            ?: return@get call.respond(HttpStatusCode.BadRequest,
-                FeilRespons("Ugyldig eller manglende uke: $ukeParam"))
+            ?: return@get call.respond(
+                HttpStatusCode.BadRequest,
+                FeilRespons("Ugyldig eller manglende uke: $ukeParam")
+            )
 
         try {
-            val json = service.ukeAntallRecords("brum-dev-b72f", år, uke)
+            val json = service.ukeAntallRecords("brum-dev-b72f", aar, uke)
             val csvBytes = service.jsonToCsv(json)
             call.respondBytes(
                 bytes = csvBytes,
@@ -35,9 +39,11 @@ fun Route.ukeAntallRecordsRoute() {
                 status = HttpStatusCode.OK
             )
         } catch (e: Exception) {
-            logger.error("Feil ved /ukeAntall?ar=$år&uke=$uke", e)
-            call.respond(HttpStatusCode.InternalServerError,
-                FeilRespons("Feil ved henting av ukeAntallData: ${e.message}"))
+            logger.error("Feil ved /ukeAntall?ar=$aar&uke=$uke", e)
+            call.respond(
+                HttpStatusCode.InternalServerError,
+                FeilRespons("Feil ved henting av ukeAntallData: ${e.message}")
+            )
         }
     }
 }

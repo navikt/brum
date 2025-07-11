@@ -9,7 +9,6 @@ import no.nav.api.configureRouting
 import no.nav.auth.configureAuth
 import no.nav.config.Environment
 import no.nav.config.createHttpClient
-import org.slf4j.LoggerFactory
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
