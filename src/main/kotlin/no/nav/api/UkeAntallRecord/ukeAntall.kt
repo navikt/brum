@@ -32,12 +32,13 @@ fun Route.ukeAntallRecordsRoute() {
 
         try {
             val json = service.ukeAntallRecords("brum-prod-6e57", aar, uke)
-            val csvBytes = service.jsonToCsv(json)
+            call.respond(HttpStatusCode.OK, json)
+            """val csvBytes = service.jsonToCsv(json)
             call.respondBytes(
                 bytes = csvBytes,
                 contentType = ContentType.Text.CSV.withCharset(Charsets.UTF_8),
                 status = HttpStatusCode.OK
-            )
+            )"""
         } catch (e: Exception) {
             logger.error("Feil ved /ukeAntall?aar=$aar&uke=$uke", e)
             call.respond(
