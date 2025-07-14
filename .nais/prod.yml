@@ -17,10 +17,10 @@ spec:
           namespace: nais
         - application: brum
   env:
-    - name: BRUM_FRONTEND_URL
-      value: "brum.intern.nav.no"
-    - name: BIGQUERY_PROJECT_ID
-      value: "brum-prod-6e57"
+  - name: BRUM_FRONTEND_URL
+    value: "brum.intern.nav.no"
+  - name: BIGQUERY_PROJECT_ID
+    value: "brum-prod-6e57"
   gcp:
     bigQueryDatasets:
       - name: tiltak_silver # Så langt bare ett eksempelsett. Ikke det vi skal bruke senere
