@@ -54,6 +54,8 @@ class UkeAntallService() {
         // Grupper dataen ved både avdeling og innsatsgruppe ( serie og stack)
         val grouped = records.groupBy { Pair(it.avdeling, it.innsatsgruppe) }
 
+        // Formater dataen til å ha keys som er den gitte metadataen
+        // Rader er de forskjellige verdiene til en gitt innsattsgruppe under en gitt avdeling
         val data = grouped.map { (key, groupRecords) ->
             val (avdeling, innsatsgruppe) = key
             val verdier = headers.map { header ->
@@ -67,7 +69,10 @@ class UkeAntallService() {
                 innsatsgruppe = innsatsgruppe,
                 verdier = verdier,
             )
-        }
+        }.sortedWith(
+            compareBy<AvdelingsData> { it.avdeling }
+                .thenBy { it.innsatsgruppe }
+        )
 
         return TransformedData(
             aar = aar,
