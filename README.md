@@ -118,4 +118,4 @@ src/main/kotlin/no/nav/
 ```bash
 # Følg logger i utvikling
 nais login
-kubectl get log app=brum
+kubectl logs -fl app=brum 
