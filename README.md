@@ -6,7 +6,7 @@ En backend-applikasjon for oversikt over tiltak i NAV Bærum. Applikasjonen tilb
 
 Brum er en Kotlin-basert web-applikasjon bygget med Ktor som tilbyr REST API-er for å hente og analysere data om NAV Bærum sine tiltak. Applikasjonen integrerer med Google BigQuery for datalagring og bruker Texas for autentisering.
 
-### Hovedfunksjonaliteter:
+### Hovedfunksjonaliteter(NB både Gjennomføringsoversikt og Ukentlig statistikk er mock data og laget for kun mvp og representerer ikke ekte/riktig data) :
 - **Gjennomføringsoversikt**: Hente informasjon om pågående og planlagte tiltak
 - **Ukentlig statistikk**: Detaljert oversikt over antall deltakere per uke, innsatsgruppe og avdeling
 - **Brukeradministrasjon**: Håndtering av innloggede brukere via NAV-identitet
