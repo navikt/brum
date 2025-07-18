@@ -2,20 +2,6 @@
 
 En backend-applikasjon for oversikt over tiltak i NAV Bærum. Applikasjonen tilbyr API-er for å hente data om gjennomføringer, ukentlige antall og brukerinformasjon.
 
-## 📋 Innholdsfortegnelse
-
-- [Oversikt](#oversikt)
-- [Teknologier](#teknologier)
-- [Forutsetninger](#forutsetninger)
-- [Installasjon](#installasjon)
-- [Kjøring](#kjøring)
-- [API-dokumentasjon](#api-dokumentasjon)
-- [Autentisering](#autentisering)
-- [Miljøvariabler](#miljøvariabler)
-- [Deployment](#deployment)
-- [Testing](#testing)
-- [Utvikling](#utvikling)
-
 ## 🎯 Oversikt
 
 Brum er en Kotlin-basert web-applikasjon bygget med Ktor som tilbyr REST API-er for å hente og analysere data om NAV Bærum sine tiltak. Applikasjonen integrerer med Google BigQuery for datalagring og bruker Texas for autentisering.
