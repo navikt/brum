@@ -15,7 +15,7 @@ jobs:
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
       - uses: actions/setup-java@v4
@@ -50,7 +50,7 @@ jobs:
         id-token: write
     needs: test-build-deploy
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
       - uses: nais/deploy/actions/deploy@7c152a10f4da3ca352d57a25eba0b3a8e04882f9
@@ -65,7 +65,7 @@ jobs:
         id-token: write
       needs: [deploy-dev,test-build-deploy]
       steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v5
           with:
             persist-credentials: false
         - uses: nais/deploy/actions/deploy@7c152a10f4da3ca352d57a25eba0b3a8e04882f9
