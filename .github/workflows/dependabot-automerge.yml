@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Automerge Dependabot PRs
-        uses: navikt/automerge-dependabot@715236f66bfe1d9a316fd67921161647f4361500
+        uses: navikt/automerge-dependabot@839749048f14dd9b55f9c042e853e2aa8a8a1390
         with:
           token: ${{ github.token }}
           minimum-age-of-pr: '3'
